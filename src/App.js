@@ -1,23 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import NavBar from './Components/NavBar/NavBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ItemListContainer from './Components/ItemListContainer/ItemListContainer';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
 
-        <p>
-
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <NavBar/>
+        <ItemListContainer greeting='Hey i am using React!'/>
     </div>
   );
 }
