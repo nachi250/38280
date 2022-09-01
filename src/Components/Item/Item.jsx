@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { NavLink } from 'react-router-dom'
 
 const Item = ({item})=>{
     return (
@@ -10,7 +11,7 @@ const Item = ({item})=>{
                 <Card.Text>
                   $ {item.price}.
                 </Card.Text>
-                <Button variant="primary">Buy</Button>
+                <Button variant="primary"> <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`item/${item.id}`}>Detail </NavLink> </Button>
             </Card.Body>
         </Card>
     )

@@ -1,6 +1,7 @@
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import CartWidget from '../CartWidget/CartWidget';
+import { NavLink } from "react-router-dom";
 
 
 
@@ -10,21 +11,22 @@ const NavBar = ()=> {
     const categories = [
         {
             name:'home',
-            src:'#'
+            to:'#'
         },
         {
-            name:'link',
-            src:'#'
+            name:'Categories',
+            to:'#'
         },
         {
-            name:'Contact',
-            src:'#'
+            name:'Productos',
+            to:'#'
         }
     ]
 
     return(
             <Navbar bg="light" expand="lg">
-                            <Navbar.Brand href="#home">
+                            <Navbar.Brand style={{margin: '15px'}} href="#home"> 
+                                <NavLink to={'/'}>
                                 <img
                                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/375px-React.svg.png"
                                     width="30"
@@ -32,14 +34,15 @@ const NavBar = ()=> {
                                     className="d-inline-block align-top"
                                     alt="logo"
                                 />
+                                </NavLink>
                             </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="me-auto">
-                                        {categories.map((cat)=> {
-                                            return (<Nav.Link href="#home" key={cat.name} >{cat.name}</Nav.Link>)
+                                        {categories.map((category)=> {
+                                            return ( <NavLink style={{textDecoration: 'none', color: 'black', margin: '20px'}} to={category.to} key={category.name}>{category.name}</NavLink>)
                                         })}
-                                    </Nav>
+                                    </Nav> 
                                     <Nav className="me-auto">
                                         <CartWidget qty='0'/>
                                     </Nav>
