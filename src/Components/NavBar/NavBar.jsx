@@ -38,12 +38,12 @@ const NavBar = ()=> {
                             </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
-                                    <Nav className="me-auto">
+                                    <Nav className="mx-auto">
                                         {categories.map((category)=> {
                                             return ( <NavLink style={{textDecoration: 'none', color: 'black', margin: '20px'}} to={category.to} key={category.name}>{category.name}</NavLink>)
                                         })}
                                     </Nav> 
-                                    <Nav className="me-auto">
+                                    <Nav className="m-3">
                                         <CartWidget qty='0'/>
                                     </Nav>
                           

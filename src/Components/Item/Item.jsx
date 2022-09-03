@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom'
 
 const Item = ({item})=>{
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={item.pictureUrl} />
+        <Card style={{ width: '18rem', margin: 'auto', marginTop: '20px' }}>
+            <Card.Img variant="top" src={item.pictureUrl}/>
             <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
                 <Card.Text>

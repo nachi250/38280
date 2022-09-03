@@ -18,9 +18,13 @@ const ItemListContainer = (props)=> {
     }, [])
  
     return (
-        <div>
+        <>
+        {items.length > 0 ?
             <ItemList items={items}/>
-        </div>
+            :
+            <h1> Cargando... </h1>
+        }
+        </>  
     )
 }
 

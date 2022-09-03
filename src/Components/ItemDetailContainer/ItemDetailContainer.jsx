@@ -21,7 +21,13 @@ const ItemDetailContainer = ()=> {
 
 
     return (
+        <>
+        {items.length > 0 ?
             <ItemDetail key={itemId} item={item} itemId={itemId}/>
+            :
+            <h1> Cargando... </h1>
+        }
+        </>  
     )
 }
 
