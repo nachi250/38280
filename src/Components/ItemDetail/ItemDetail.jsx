@@ -29,11 +29,13 @@ const ItemDetail = ({item})=> {
     const addToCart = () => {
         console.log(`Added to cart ${count} units of ${item.title}`)
         setBuy(false)
+        handlePurchase()
     }
 
     const handlePurchase = () => {
         addItem(item, count)
     }
+
 
     return (
 
@@ -48,7 +50,7 @@ const ItemDetail = ({item})=> {
                 {buy?
                     <ItemCount increment={increment} decrement={decrement} onConfirm={addToCart} count={count}/>
                     :
-                    <Button variant="primary" onClick={handlePurchase}> <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/cart`}>To Cart</NavLink> </Button>
+                    <Button variant="primary"> <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/cart`}>To Cart</NavLink> </Button>
                 }
             </Card.Body>
         </Card>

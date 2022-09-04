@@ -25,29 +25,28 @@ const NavBar = ()=> {
 
     return(
             <Navbar bg="light" expand="lg">
-                            <Navbar.Brand style={{margin: '15px'}} href="#home"> 
-                                <NavLink to={'/'}>
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/375px-React.svg.png"
-                                    width="30"
-                                    height="30"
-                                    className="d-inline-block align-top"
-                                    alt="logo"
-                                />
-                                </NavLink>
-                            </Navbar.Brand>
-                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                                <Navbar.Collapse id="basic-navbar-nav">
-                                    <Nav className="mx-auto">
-                                        {categories.map((category)=> {
-                                            return ( <NavLink style={{textDecoration: 'none', color: 'black', margin: '20px'}} to={category.to} key={category.name}>{category.name}</NavLink>)
-                                        })}
-                                    </Nav> 
-                                    <Nav className="m-3">
-                                        <CartWidget qty='0'/>
-                                    </Nav>
-                          
-                                </Navbar.Collapse>
+                <Navbar.Brand style={{margin: '15px'}}> 
+                    <NavLink to={'/'}>
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/375px-React.svg.png"
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                        alt="logo"
+                    />
+                    </NavLink>
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="mx-auto">
+                            {categories.map((category)=> {
+                                return ( <NavLink style={{textDecoration: 'none', color: 'black', margin: '20px'}} to={category.to} key={category.name}>{category.name}</NavLink>)
+                            })}
+                        </Nav> 
+                        <Nav className="m-3">
+                            <CartWidget qty='0'/>
+                        </Nav>
+                    </Navbar.Collapse>
             </Navbar>
           );
 }

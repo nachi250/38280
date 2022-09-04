@@ -1,9 +1,8 @@
-import { useState } from "react"
-import { useEffect } from "react"
-import ItemCount from "../ItemCount/ItemCount"
-import ItemDetailContainer from "../ItemDetailContainer/ItemDetailContainer"
-import ItemList from "../ItemList/ItemList"
-import { getItems } from '../../Services/getItem'
+import { useState } from "react";
+import { useEffect } from "react";
+import ItemList from "../ItemList/ItemList";
+import { getItems } from '../../Services/getItem';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 const ItemListContainer = (props)=> {
@@ -22,7 +21,9 @@ const ItemListContainer = (props)=> {
         {items.length > 0 ?
             <ItemList items={items}/>
             :
-            <h1> Cargando... </h1>
+            <Spinner animation="border" role="status" className="m-5">
+            <span className="visually-hidden">Loading...</span>
+            </Spinner>
         }
         </>  
     )

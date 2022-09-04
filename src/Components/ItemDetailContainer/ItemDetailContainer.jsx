@@ -3,6 +3,7 @@ import { getItems} from '../../Services/getItem'
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 
 const ItemDetailContainer = ()=> {
 
@@ -25,7 +26,9 @@ const ItemDetailContainer = ()=> {
         {items.length > 0 ?
             <ItemDetail key={itemId} item={item} itemId={itemId}/>
             :
-            <h1> Cargando... </h1>
+            <Spinner animation="border" role="status" className="m-5">
+            <span className="visually-hidden">Loading...</span>
+            </Spinner>
         }
         </>  
     )
