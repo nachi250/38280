@@ -23,9 +23,18 @@ const CartContextProvider = ({children}) => {
 
             let newCart = cart.filter (item => item.product !== item)
             setCart([...newCart, itemExist])
+            console.log(newCart)
         } else {
             setCart([...cart, {item: item, quantity: qty}])
+            console.log(cart)
         }
+    }
+
+    const removeItem = (e) => {
+        const itemId = e.target.getAttribute('id')
+        console.log('Remove ID: ',itemId)
+        let newCart = cart.filter(item => item.item.id !== itemId)
+        setCart([...newCart])
     }
 
     const isInCart = (item) => {
@@ -40,7 +49,7 @@ const CartContextProvider = ({children}) => {
 
     return (
             <>
-            <CartContext.Provider value= {{cart, addItem, totalCart, cleanCart}}>
+            <CartContext.Provider value= {{cart, addItem, totalCart, cleanCart, removeItem}}>
                 {children}
             </CartContext.Provider>
             </>

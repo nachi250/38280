@@ -42,7 +42,7 @@ const NavBar = ()=> {
                         <Nav className="mx-auto">
                         <NavLink style={{textDecoration: 'none', color: 'black', margin: '20px'}} to='/'>Home</NavLink>
                         
-                        <NavDropdown title="Categories" id="navbarScrollingDropdown">
+                        <NavDropdown title="Categories" id="navbarScrollingDropdown" className='m-auto'>
                             {categories.map((category)=>{
                                 return(
                                     <NavLink style={{textDecoration: 'none', color: 'black', margin: '20px'}} to={category.name} key={category.key}>{category.name}</NavLink>

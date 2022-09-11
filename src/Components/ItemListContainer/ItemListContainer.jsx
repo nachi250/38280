@@ -1,25 +1,15 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
-import { getItems } from '../../Services/getItem';
 import Spinner from 'react-bootstrap/Spinner';
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../Services/firebase/firebase'
 import { useParams } from "react-router-dom";
 
 // Productos locales
-const ItemListContainer = (props)=> {
+const ItemListContainer = ()=> {
 
-    const [items, setItems] = useState([])
-    const {categoryId} = useParams() 
-
-    useEffect(()=>{
-        const items = getItems()
-        items.then(items => {
-            setItems(items)
-        })
-    }, [])
- 
+const {categoryId} = useParams() 
 
 // Productos Firestore
 const [products, setProducts] = useState([])
@@ -30,10 +20,12 @@ useEffect(()=> {
     const items = snapshot.docs.map(doc =>{
       return {id: doc.id, ...doc.data()}
     })
+    console.log(`Productos Firebase: ${items}`)
     console.log(categoryId)
     console.log('item filtrado por categoria: ',items.filter(product => product.category === categoryId))
     if (categoryId === undefined){
       setProducts(items)
+      console.log(`setProducts: ${items}`)
       
     } else {
       setProducts(items.filter(product => product.category === categoryId))
@@ -44,7 +36,7 @@ useEffect(()=> {
 
     return (
         <>
-        {items.length > 0 ?
+        {products.length > 0 ?
             <ItemList items={products}/>
             :
             <Spinner animation="border" role="status" className="m-5">

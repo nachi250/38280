@@ -1,5 +1,4 @@
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { getItems} from '../../Services/getItem'
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -10,19 +9,7 @@ import { db } from '../../Services/firebase/firebase'
 const ItemDetailContainer = ()=> {
 
     const { itemId } = useParams()
-
-    const [items, setItems] = useState([])
-    const [item, setItem] = useState({})
-    const [products, setProducts] = useState([])
     const [product, setProduct] = useState({})
-
-    useEffect(()=>{
-        const items = getItems()
-        items.then(items => {
-            setItems(items)
-            setItem(items.find(item => item.id === itemId))
-        })
-    }, [itemId]);
 
     useEffect(()=> {
         getDocs(collection(db, 'items')).then((snapshot) => {
@@ -31,7 +18,6 @@ const ItemDetailContainer = ()=> {
         })
         console.log('item: ',items.find(product => product.id === itemId))
         setProduct(items.find(product => product.id === itemId))
-
     })
 
     },[itemId])
@@ -39,7 +25,7 @@ const ItemDetailContainer = ()=> {
 
     return (
         <>
-        {items.length > 0 ?
+        {product.id !== undefined ?
             <ItemDetail key={itemId} item={product} itemId={itemId}/>
             :
             <Spinner animation="border" role="status" className="m-5">
