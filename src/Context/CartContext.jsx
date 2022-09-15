@@ -13,20 +13,34 @@ const CartContextProvider = ({children}) => {
         return total;
     }
 
+    const total = () => {
+        let total = 0
+        cart.forEach(item => {total += item.quantity * item.item.price })
+        return total;
+    }
+
     const addItem = (item, qty)=> {
-        console.log('Item; ',item, 'Cantidad:', qty)
+        console.log('add item: Item; ',item, 'Cantidad:', qty)
         const flag = isInCart(item)
         console.log(flag)
         if (flag) {
-            let itemExist = cart.find(item => item.product === item)
-            itemExist.qty += qty
-
-            let newCart = cart.filter (item => item.product !== item)
+            console.log('Cart obj:', cart[0].item)
+            let itemExist = cart.find(product => product.item.id === item.id)
+            console.log(`Item Exist: ${itemExist}`)
+            console.log(`Item Exist qty: ${itemExist.quantity}`)
+            itemExist.quantity += qty
+            console.log(`Item Exist new qty: ${itemExist.quantity}`)
+            console.log('item.product: ',item)
+            console.log('item filtrado new cart: ',cart.filter (product => product.item.id !== item.id))
+            let newCart = cart.filter (product => product.item.id !== item.id) // > problem
+            console.log(` new cart: ${newCart}`)
             setCart([...newCart, itemExist])
-            console.log(newCart)
+            console.log(`cart con repetido: ${cart}`)
+            console.log('total', total())
         } else {
             setCart([...cart, {item: item, quantity: qty}])
-            console.log(cart)
+            console.log('cart sin repetido: ',cart)
+            console.log('total', total())
         }
     }
 
@@ -38,8 +52,8 @@ const CartContextProvider = ({children}) => {
     }
 
     const isInCart = (item) => {
-        console.log(item);
-        return cart.some(producto => producto.item === item );
+        console.log(`is in cart ${item.id}`);
+        return cart.some(producto => producto.item.id === item.id );
     }
 
     const cleanCart = () => {
@@ -49,7 +63,7 @@ const CartContextProvider = ({children}) => {
 
     return (
             <>
-            <CartContext.Provider value= {{cart, addItem, totalCart, cleanCart, removeItem}}>
+            <CartContext.Provider value= {{cart, addItem, totalCart, cleanCart, removeItem, total}}>
                 {children}
             </CartContext.Provider>
             </>
