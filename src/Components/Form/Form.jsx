@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { useState, useContext } from 'react';
 import { CartContext } from "../../Context/CartContext";
 import { db } from '../../Services/firebase/firebase'
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 
 const OrderForm = () => {
 
@@ -17,7 +17,6 @@ const OrderForm = () => {
     setForm({
       ...form, [name]: value
     });
-
   };
 
   const date = new Date()
@@ -34,8 +33,26 @@ const OrderForm = () => {
     console.log(`Item: ${newOrder.items}`)
     const orderCollection = collection(db, 'orders')
     addDoc(orderCollection, newOrder).then(({id})=> setOrderId(id)).then(console.log(`Id de compra: ${orderId}`))
+    updateStock()
   }
-    
+
+  const updateStock = () => {
+    cart.forEach((item) => {
+
+        console.log(`updateStock: ${item.item.id}`)
+        console.log(`item quantity update ${item.quantity}`)
+
+        getDoc(doc(db, 'items', item.item.id)).then((documentSnapshot) => {
+          console.log(`stock del prod en firebase: ${documentSnapshot.data().stock}`)
+
+        const newStock = doc(db, 'items', item.item.id);
+        updateDoc(newStock, {stock: documentSnapshot.data().stock - item.quantity})
+                 
+        })
+
+    });
+  };
+
 
     return (
         <>

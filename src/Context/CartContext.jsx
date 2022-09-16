@@ -10,13 +10,13 @@ const CartContextProvider = ({children}) => {
     const totalCart = ()=> {
         let total = 0
         cart.forEach(item => { total += item.quantity })
-        return total;
+        return total
     }
 
     const total = () => {
         let total = 0
         cart.forEach(item => {total += item.quantity * item.item.price })
-        return total;
+        return total.toFixed([2]);;
     }
 
     const addItem = (item, qty)=> {

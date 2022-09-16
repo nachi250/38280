@@ -27,9 +27,13 @@ const ItemDetail = ({item})=> {
     }
 
     const addToCart = () => {
-        console.log(`Added to cart ${count} units of ${item.title}`)
-        setBuy(false)
-        handlePurchase()
+        if (item.stock > 0) {
+            console.log(`Added to cart ${count} units of ${item.title}`)
+            setBuy(false)
+            handlePurchase()
+        } else {
+            alert('Out of stock')
+        }
     }
 
     const handlePurchase = () => {

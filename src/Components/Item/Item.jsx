@@ -9,7 +9,7 @@ const Item = ({item})=>{
             <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
                 <Card.Text>
-                  $ {item.price}.
+                  $ {item.price}
                 </Card.Text>
                 <Button variant="primary"> <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/item/${item.id}`}>Detail </NavLink> </Button>
             </Card.Body>
